@@ -1,0 +1,19 @@
+{
+  "name": "newtools.cloud",
+  "version": "1.0.0",
+  "description": "个人云工具箱 - PWA 应用",
+  "scripts": {
+    "generate-icons": "node generate-icons.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pwa",
+    "tools",
+    "productivity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}

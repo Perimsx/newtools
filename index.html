@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#4A90E2">
+    <meta name="msapplication-TileColor" content="#4A90E2">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="工具箱">
+    <meta name="description" content="个人云工具箱 - 快速访问常用工具和网站">
+    <meta name="keywords" content="工具箱,云工具,书签管理,效率工具">
+    <meta name="author" content="newtools.cloud">
+
+    <!-- Open Graph / Social Media Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="newtools.cloud - 我的工具箱">
+    <meta property="og:description" content="个人云工具箱 - 快速访问常用工具和网站">
+    <meta property="og:locale" content="zh_CN">
+
+    <title>newtools· coet</title>
+
+    <!-- Favicon - 云图标 -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23007AFF' d='M768.9 440.5c-24.2-121.3-128-214-255.9-214-100.3 0-186.7 57.1-228.2 142.7C177.5 383.5 98 472.6 98 583.2c0 117.7 93.4 213.9 207.5 213.9H755c96.8 0 172.9-78.5 172.9-178.3 0.1-92.7-72.5-171.2-159-178.3z m-325.1 71.3V382.1c0-7.2 5.8-13 13-13h112.4c7.2 0 13 5.8 13 13v129.7h73.1c11.5 0 17.3 13.8 9.3 22L522.3 680.5c-5.1 5.3-13.5 5.3-18.6 0L361.4 533.8c-8-8.2-2.1-22 9.3-22h73.1z'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23007AFF' d='M768.9 440.5c-24.2-121.3-128-214-255.9-214-100.3 0-186.7 57.1-228.2 142.7C177.5 383.5 98 472.6 98 583.2c0 117.7 93.4 213.9 207.5 213.9H755c96.8 0 172.9-78.5 172.9-178.3 0.1-92.7-72.5-171.2-159-178.3z m-325.1 71.3V382.1c0-7.2 5.8-13 13-13h112.4c7.2 0 13 5.8 13 13v129.7h73.1c11.5 0 17.3 13.8 9.3 22L522.3 680.5c-5.1 5.3-13.5 5.3-18.6 0L361.4 533.8c-8-8.2-2.1-22 9.3-22h73.1z'/%3E%3C/svg%3E">
+    <link rel="icon" sizes="192x192" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23007AFF' d='M768.9 440.5c-24.2-121.3-128-214-255.9-214-100.3 0-186.7 57.1-228.2 142.7C177.5 383.5 98 472.6 98 583.2c0 117.7 93.4 213.9 207.5 213.9H755c96.8 0 172.9-78.5 172.9-178.3 0.1-92.7-72.5-171.2-159-178.3z m-325.1 71.3V382.1c0-7.2 5.8-13 13-13h112.4c7.2 0 13 5.8 13 13v129.7h73.1c11.5 0 17.3 13.8 9.3 22L522.3 680.5c-5.1 5.3-13.5 5.3-18.6 0L361.4 533.8c-8-8.2-2.1-22 9.3-22h73.1z'/%3E%3C/svg%3E">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="assets/css/style.css?v=5">
+    <link rel="stylesheet" href="assets/css/performance.css?v=1">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"></noscript>
+
+    <!-- Font Awesome with async loading -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"></noscript>
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Critical CSS hints -->
+    <style>
+        /* Prevent FOUC and improve perceived performance */
+        body { visibility: hidden; opacity: 0; }
+        body.loaded { visibility: visible; opacity: 1; transition: opacity 0.3s ease; }
+    </style>
+</head>
+
+<body>
+    <div id="customBg" aria-hidden="true"></div>
+
+    <div class="app-container" role="application" aria-label="云工具箱应用">
+        <header class="main-header" role="banner">
+            <div class="top-bar">
+                <div class="logo" role="img" aria-label="newtools.cloud 云工具箱">
+                    <i class="fa-solid fa-cloud" aria-hidden="true"></i>
+                    <span>newtools.cloud</span>
+                </div>
+                <div class="header-actions" role="toolbar" aria-label="应用操作">
+                    <button id="themeToggle" class="icon-btn" title="切换主题" aria-label="切换深色/浅色主题" type="button">
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <div>
+                        <button id="adminBtn" class="icon-btn" title="管理" aria-label="打开管理菜单" aria-haspopup="true" aria-expanded="false" type="button">
+                            <i class="fa-solid fa-lock" id="adminIcon" aria-hidden="true"></i>
+                        </button>
+                        <div id="adminMenu" class="admin-menu" role="menu" aria-label="管理菜单" aria-hidden="true">
+                            <div class="admin-menu-item" id="addToolMenuItem" role="menuitem" tabindex="0" aria-label="添加新工具">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                <span>添加工具</span>
+                            </div>
+                            <div class="admin-menu-item" id="settingsMenuItem" role="menuitem" tabindex="0" aria-label="打开偏好设置">
+                                <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                                <span>偏好设置</span>
+                            </div>
+                            <div class="admin-menu-divider" role="separator"></div>
+                            <div class="admin-menu-item" id="logoutAdminMenuItem" role="menuitem" tabindex="0" aria-label="退出管理模式">
+                                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                                <span>退出管理模式</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-container" role="search">
+                <div class="search-wrapper">
+                    <div class="search-engine-select" id="searchEngine" title="切换搜索引擎" role="button" tabindex="0" aria-label="选择搜索引擎" aria-haspopup="listbox">
+                        <i class="fa-brands fa-google" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </div>
+                    <input type="search" id="searchInput" class="search-input" placeholder="搜索工具..." autocomplete="off" aria-label="搜索工具" enterkeyhint="search">
+                    <button id="doSearchBtn" class="search-btn" aria-label="执行搜索" type="button">
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main id="mainContent" class="content-area" role="main" aria-label="工具列表" tabindex="-1"></main>
+    </div>
+
+    <div id="toastContainer" class="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Add/Edit Modal -->
+    <div id="toolModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="glass-modal compact-modal">
+            <div class="modal-header">
+                <h3 id="modal-title">添加工具</h3>
+            </div>
+            <form id="toolForm" autocomplete="on">
+                <input type="hidden" id="toolId">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="toolName">名称</label>
+                        <input type="text" id="toolName" class="form-input" required placeholder="例如: GitHub" autocomplete="organization-title" enterkeyhint="next">
+                    </div>
+                    <div class="form-group">
+                        <label for="toolCategory">分类</label>
+                        <input type="text" id="toolCategory" class="form-input" placeholder="例如: 开发" list="categoryList" autocomplete="organization" enterkeyhint="next">
+                        <datalist id="categoryList">
+                            <option value="开发">
+                            <option value="设计">
+                            <option value="工具">
+                            <option value="社交">
+                            <option value="娱乐">
+                        </datalist>
+                        <div id="categoryTags" class="category-tags" role="listbox" aria-label="推荐分类"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="toolUrl">链接地址</label>
+                        <input type="url" id="toolUrl" class="form-input" required placeholder="https://..." autocomplete="url" inputmode="url" enterkeyhint="next">
+                    </div>
+                    <div class="form-group">
+                        <label for="toolDesc">备注 <span class="optional-text">(可选)</span></label>
+                        <input type="text" id="toolDesc" class="form-input" placeholder="简短描述这个工具的作用..." autocomplete="off" enterkeyhint="done">
+                    </div>
+                </div>
+                <div class="modal-footer" role="group" aria-label="表单操作">
+                    <button type="button" class="secondary-btn close-modal" aria-label="取消添加">取消</button>
+                    <button type="submit" class="primary-btn" aria-label="保存工具">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div id="confirmModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirmMessage" aria-hidden="true">
+        <div class="glass-modal confirm-modal">
+            <div class="modal-header">
+                <h3 id="confirm-title">确认操作</h3>
+            </div>
+            <div class="modal-content">
+                <p id="confirmMessage">您确定要执行此操作吗？</p>
+            </div>
+            <div class="modal-footer" role="group" aria-label="确认操作">
+                <button id="confirmCancelBtn" class="secondary-btn" aria-label="取消操作">取消</button>
+                <button id="confirmOkBtn" class="danger-btn" aria-label="确认删除">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> 删除
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="settings-title" aria-hidden="true">
+        <div class="glass-modal compact-modal">
+            <div class="modal-header">
+                <h3 id="settings-title">偏好设置</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="bgInput">自定义背景图 URL</label>
+                    <input type="url" id="bgInput" class="form-input" placeholder="https://images.unsplash.com/photo-1557683316-973673baf926" autocomplete="url" inputmode="url">
+                    <button id="saveBgBtn" class="primary-btn full-width" aria-label="应用自定义背景">应用背景</button>
+                </div>
+                <hr role="separator">
+                <div class="form-group">
+                    <label>数据管理</label>
+                    <div class="button-group" role="group" aria-label="数据备份和恢复">
+                        <button id="exportBtn" class="secondary-btn" aria-label="导出数据备份">
+                            <i class="fa-solid fa-download" aria-hidden="true"></i> 备份数据
+                        </button>
+                        <label for="importFile" class="secondary-btn" role="button" tabindex="0" aria-label="导入数据备份">
+                            <i class="fa-solid fa-upload" aria-hidden="true"></i> 恢复数据
+                        </label>
+                        <input type="file" id="importFile" accept=".json" hidden aria-label="选择备份文件">
+                    </div>
+                    <button id="resetBtn" class="secondary-btn danger-btn full-width" aria-label="重置所有数据到初始状态">
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i> 重置所有数据
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="secondary-btn close-modal" aria-label="关闭设置">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Verification Modal -->
+    <div id="passwordModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle" aria-describedby="passwordModalDesc" aria-hidden="true">
+        <div class="glass-modal compact-modal password-modal">
+            <div class="modal-header">
+                <h3 id="passwordModalTitle"><i class="fa-solid fa-lock" aria-hidden="true"></i> 管理员验证</h3>
+            </div>
+            <div class="modal-body">
+                <p id="passwordModalDesc" class="modal-description">请输入管理员密码</p>
+                <div class="form-group">
+                    <label for="adminPasswordInput" class="visually-hidden">管理员密码</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="adminPasswordInput" class="form-input" placeholder="请输入密码" autocomplete="current-password" inputmode="text" required>
+                        <button type="button" id="togglePasswordBtn" class="toggle-password-btn" title="显示/隐藏密码" aria-label="显示密码" aria-pressed="false">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <p id="passwordError" class="error-message" role="alert" aria-live="assertive"></p>
+                </div>
+            </div>
+            <div class="modal-footer" role="group" aria-label="密码验证操作">
+                <button id="cancelPasswordBtn" class="secondary-btn" aria-label="取消密码验证">取消</button>
+                <button id="confirmPasswordBtn" class="primary-btn" aria-label="确认密码">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initial Setup Modal -->
+    <div id="initialSetupModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="initialSetupTitle" aria-describedby="initialSetupDesc" aria-hidden="true">
+        <div class="glass-modal compact-modal password-modal">
+            <div class="modal-header">
+                <h3 id="initialSetupTitle"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> 设置管理员密码</h3>
+            </div>
+            <div class="modal-body">
+                <p id="initialSetupDesc" class="modal-description">欢迎使用！请设置管理员密码</p>
+                <div class="form-group">
+                    <label for="initialPasswordInput">设置密码</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="initialPasswordInput" class="form-input" placeholder="请输入新密码" autocomplete="new-password" inputmode="text" required>
+                        <button type="button" id="toggleInitialPasswordBtn" class="toggle-password-btn" aria-label="显示密码" aria-pressed="false">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPasswordInput">确认密码</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="confirmPasswordInput" class="form-input" placeholder="请再次输入密码" autocomplete="new-password" inputmode="text" required>
+                        <button type="button" id="toggleConfirmPasswordBtn" class="toggle-password-btn" aria-label="显示密码" aria-pressed="false">
+                            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <p id="initialSetupError" class="error-message" role="alert" aria-live="assertive"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmInitialSetupBtn" class="primary-btn full-width" aria-label="完成初始设置">完成设置</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/store.js?v=5" defer></script>
+    <script src="assets/js/utils.js?v=4" defer></script>
+    <script src="assets/js/performance-monitor.js?v=2" defer></script>
+    <script src="assets/js/animation-optimizer.js?v=2" defer></script>
+    <script src="assets/js/renderer.js?v=4" defer></script>
+    <script src="assets/js/events.js?v=4" defer></script>
+    <script src="assets/js/app.js?v=4" defer></script>
+
+    <script>
+        // Performance optimization: Mark body as loaded when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                document.body.classList.add('loaded');
+            });
+        } else {
+            document.body.classList.add('loaded');
+        }
+
+        // Service Worker registration with enhanced error handling
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .then(function(registration) {
+                        console.log('Service Worker 注册成功:', registration.scope);
+
+                        // Handle updates
+                        registration.addEventListener('updatefound', function() {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('发现新版本');
+                                    // Use custom notification instead of alert for better mobile UX
+                                    const toastContainer = document.getElementById('toastContainer');
+                                    if (toastContainer) {
+                                        const toast = document.createElement('div');
+                                        toast.className = 'toast';
+                                        toast.innerHTML = `
+                                            <div class="toast-content">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>发现新版本</span>
+                                                <button onclick="window.location.reload()" class="toast-action">立即刷新</button>
+                                                <button onclick="this.parentElement.parentElement.remove()" class="toast-close"><i class="fa-solid fa-times"></i></button>
+                                            </div>
+                                        `;
+                                        toastContainer.appendChild(toast);
+                                        setTimeout(() => toast.remove(), 30000);
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(error) {
+                        console.error('Service Worker 注册失败:', error);
+                    });
+            });
+
+            // Handle controller change
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', function() {
+                if (!refreshing) {
+                    refreshing = true;
+                    window.location.reload();
+                }
+            });
+        }
+
+        // PWA install prompt enhancement
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', function(e) {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Show install button if it exists
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.style.display = 'block';
+                installBtn.addEventListener('click', function() {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then(function(choiceResult) {
+                            if (choiceResult.outcome === 'accepted') {
+                                console.log('用户接受了安装提示');
+                            }
+                            deferredPrompt = null;
+                        });
+                    }
+                });
+            }
+        });
+
+        // Handle app installed event
+        window.addEventListener('appinstalled', function() {
+            deferredPrompt = null;
+            const installBtn = document.getElementById('installBtn');
+            if (installBtn) {
+                installBtn.style.display = 'none';
+            }
+            console.log('PWA 已安装');
+        });
+    </script>
+
+    <!-- Font Awesome fallback loaded last -->
+    <script src="assets/js/fontawesome-fallback.js" defer></script>
+</body>
+
+</html>

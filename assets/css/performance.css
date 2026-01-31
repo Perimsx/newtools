@@ -1,0 +1,426 @@
+/**
+ * 性能优化和动画降级方案
+ * 为 style.css 添加的补充样式
+ */
+
+/* ============================================
+   性能优化和动画降级方案
+   ============================================ */
+
+/* 基础性能优化 - GPU 加速 */
+.tool-card,
+.category-section,
+.modal-overlay,
+.modal-content,
+.search-container,
+.search-suggestions {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 优化动画性能 - 使用 transform 和 opacity */
+.tool-card,
+.button,
+.modal-overlay,
+.modal-content,
+.search-suggestions {
+    transition:
+        transform var(--duration-base) var(--easing-default),
+        opacity var(--duration-base) var(--easing-default);
+}
+
+/* 避免触发布局重排的属性 */
+.tool-card,
+.button {
+    transition-property: transform, opacity, box-shadow;
+    /* 避免使用 margin, padding, width, height 等属性 */
+}
+
+/* ============================================
+   减少动画偏好支持 (prefers-reduced-motion)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    /* 禁用所有动画 */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* 禁用视差效果 */
+    .custom-bg {
+        background-attachment: scroll !important;
+    }
+
+    /* 禁用模糊效果（性能开销大） */
+    .glass {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+/* ============================================
+   低性能设备降级策略
+   ============================================ */
+
+/* 禁用复杂动画 */
+.perf-low.no-complex-animations,
+.perf-medium.no-complex-animations {
+    /* 禁用淡入动画 */
+    .animate-fade-in {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 禁用缩放动画 */
+    .animate-scale-in {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 禁用滑动动画 */
+    .animate-slide-up {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 禁用工具卡片悬停效果 */
+    .tool-card:hover {
+        transform: none !important;
+    }
+
+    /* 禁用按钮悬停效果 */
+    .button:hover {
+        transform: none !important;
+    }
+
+    /* 禁用分类标题动画 */
+    .category-header:hover .category-arrow {
+        transform: none !important;
+    }
+}
+
+/* 禁用视差效果 */
+.perf-low.no-parallax,
+.perf-medium.no-parallax {
+    .custom-bg {
+        background-attachment: scroll !important;
+    }
+
+    /* 禁用滚动视差 */
+    [data-parallax] {
+        transform: none !important;
+    }
+}
+
+/* 减少模糊效果 */
+.perf-low.reduced-blur,
+.perf-medium.reduced-blur {
+    .search-container,
+    .search-suggestions,
+    .modal-content,
+    .glass {
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+    }
+}
+
+/* 低性能设备：进一步减少模糊 */
+.perf-low.reduced-blur {
+    .search-container,
+    .search-suggestions,
+    .modal-content,
+    .glass {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: var(--glass-bg) !important;
+    }
+}
+
+/* ============================================
+   中等性能设备优化
+   ============================================ */
+
+.perf-medium {
+    /* 减少动画时长 */
+    .tool-card,
+    .button,
+    .modal-content {
+        transition-duration: 150ms !important;
+    }
+
+    /* 简化动画效果 */
+    .tool-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: var(--shadow-md) !important;
+    }
+
+    /* 禁用复杂的涟漪效果 */
+    .ripple {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   低性能设备激进优化
+   ============================================ */
+
+.perf-low {
+    /* 最小化动画 */
+    .tool-card,
+    .button,
+    .modal-content {
+        transition: none !important;
+    }
+
+    /* 禁用阴影动画 */
+    .tool-card,
+    .button {
+        box-shadow: var(--shadow-sm) !important;
+        transition: box-shadow 0.1s !important;
+    }
+
+    /* 禁用渐变背景 */
+    .custom-bg {
+        background: var(--color-bg-primary) !important;
+    }
+
+    /* 禁用装饰性效果 */
+    .category-arrow {
+        transition: none !important;
+    }
+
+    /* 简化模态框动画 */
+    .modal-overlay.active .modal-content {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: scale(1) !important;
+    }
+}
+
+/* ============================================
+   动画优化 - 使用 GPU 加速
+   ============================================ */
+
+/* GPU 加速的淡入动画 */
+@keyframes fadeInGPU {
+    from {
+        opacity: 0;
+        transform: translateZ(0) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0) scale(1);
+    }
+}
+
+/* GPU 加速的滑入动画 */
+@keyframes slideUpGPU {
+    from {
+        opacity: 0;
+        transform: translateZ(0) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0) translateY(0);
+    }
+}
+
+/* GPU 加速的缩放动画 */
+@keyframes scaleInGPU {
+    from {
+        opacity: 0;
+        transform: translateZ(0) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0) scale(1);
+    }
+}
+
+/* 优化的涟漪动画 */
+@keyframes rippleGPU {
+    to {
+        transform: translateZ(0) scale(4);
+        opacity: 0;
+    }
+}
+
+/* 应用优化的动画 */
+.animate-fade-in {
+    animation: fadeInGPU var(--duration-base) var(--easing-default) both;
+}
+
+.animate-slide-up {
+    animation: slideUpGPU var(--duration-base) var(--easing-default) both;
+}
+
+.animate-scale-in {
+    animation: scaleInGPU var(--duration-base) var(--easing-smooth) both;
+}
+
+/* ============================================
+   性能监控调试模式（仅开发环境）
+   ============================================ */
+
+/* 显示性能指标（仅在调试模式下启用） */
+:root.debug-mode::after {
+    content: "FPS: " attr(data-fps) " | Tier: " attr(data-performance-tier);
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #0f0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+/* 性能警告 */
+:root.debug-mode.performance-warning::after {
+    background: rgba(255, 0, 0, 0.8);
+    color: #fff;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ============================================
+   内容可见性优化（Content Visibility）
+   ============================================ */
+
+/* 优化大量内容的渲染 */
+.tools-grid,
+.category-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+}
+
+/* 优化搜索结果渲染 */
+.search-suggestions .suggestions-list {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 300px;
+}
+
+/* ============================================
+   字体渲染优化
+   ============================================ */
+
+/* 提升字体渲染性能 */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ============================================
+   图像加载优化
+   ============================================ */
+
+/* 延迟加载占位符 */
+img[loading="lazy"] {
+    background: linear-gradient(
+        90deg,
+        var(--color-bg-secondary) 25%,
+        rgba(255, 255, 255, 0.3) 50%,
+        var(--color-bg-secondary) 75%
+    );
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* 图像加载完成后禁用动画 */
+img[loading="lazy"]:loaded {
+    animation: none;
+}
+
+/* ============================================
+   滚动性能优化
+   ============================================ */
+
+/* 使用 CSS Scroll Snap 提升滚动体验 */
+.category-section {
+    scroll-snap-align: start;
+    scroll-margin-top: 80px;
+}
+
+/* 优化滚动容器 */
+.main-content {
+    scroll-behavior: smooth;
+}
+
+/* 在低性能设备上禁用平滑滚动 */
+.perf-low .main-content {
+    scroll-behavior: auto;
+}
+
+/* ============================================
+   交互反馈优化
+   ============================================ */
+
+/* 优化触摸反馈 */
+@media (hover: none) and (pointer: coarse) {
+    /* 移动设备：禁用悬停效果 */
+    .tool-card:hover,
+    .button:hover {
+        transform: none;
+    }
+
+    /* 添加触摸反馈 */
+    .tool-card:active,
+    .button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+        transition: transform 100ms ease, opacity 100ms ease;
+    }
+}
+
+/* 优化鼠标交互 */
+@media (hover: hover) and (pointer: fine) {
+    /* 桌面设备：启用悬停效果 */
+    .tool-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .button:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ============================================
+   帧率优化 - 使用 requestAnimationFrame
+   ============================================ */
+
+/* 批量更新样式 */
+.tool-card,
+.button {
+    /* 使用 transform 而不是 margin/padding */
+    transform: translateZ(0);
+    /* 提示浏览器优化渲染 */
+    will-change: transform;
+}
+
+/* 动画完成后移除 will-change */
+.tool-card:not(:hover),
+.button:not(:hover) {
+    will-change: auto;
+}

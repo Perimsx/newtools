@@ -1,0 +1,27 @@
+{
+  "name": "newtools.cloud - 我的工具箱",
+  "short_name": "工具箱",
+  "description": "个人云工具箱 - 快速访问常用工具和网站",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#4A90E2",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities", "tools"],
+  "icons": [],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "搜索工具",
+      "short_name": "搜索",
+      "description": "快速搜索工具",
+      "url": "/?action=search",
+      "icons": []
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
