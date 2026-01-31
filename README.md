@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23007AFF' d='M768.9 440.5c-24.2-121.3-128-214-255.9-214-100.3 0-186.7 57.1-228.2 142.7C177.5 383.5 98 472.6 98 583.2c0 117.7 93.4 213.9 207.5 213.9H755c96.8 0 172.9-78.5 172.9-178.3 0.1-92.7-72.5-171.2-159-178.3z'/%3E%3C/svg%3E" alt="newtools.cloud logo" width="120" height="120">
+  <img src="./logo.svg" alt="newtools.cloud logo" width="120" height="120">
 
   # newtools.cloud
 
