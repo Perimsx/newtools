@@ -427,18 +427,7 @@ newtools.cloud/
 │       ├── performance-monitor.js # 性能监控器
 │       ├── animation-optimizer.js # 动画优化器
 │       └── fontawesome-fallback.js # 图标降级方案
-│
-├── docs/                          # 文档目录
-│   ├── PERFORMANCE.md             # 性能功能文档
-│   ├── PERFORMANCE-QUICKSTART.md  # 性能快速开始
-│   ├── HOW_TO_USE.md              # 使用说明
-│   ├── PROJECT_STRUCTURE.md       # 项目结构说明
-│   └── IMPLEMENTATION-SUMMARY.md  # 实施总结
-│
-└── icons/                         # 应用图标（需生成）
-    ├── icon-192x192.png           # PWA 必需图标
-    ├── icon-512x512.png           # PWA 必需图标
-    └── ...                        # 其他尺寸图标
+└── logo.svg                       # 项目 Logo
 ```
 
 ### 核心模块说明
@@ -583,7 +572,7 @@ location.reload();
 
 ### Q: 为什么图标不显示？
 
-A: 可能是 CDN 加载问题。查看 [HOW_TO_USE.md](HOW_TO_USE.md) 中的故障排除部分。
+A: 可能是 CDN 加载问题。请检查网络连接或尝试刷新页面。
 
 ### Q: 如何完全离线使用？
 
@@ -625,8 +614,6 @@ window.__performanceMonitor.getPerformanceReport();
 ### 测试页面
 
 访问 `performance-test.html` 查看实时性能数据和压力测试。
-
-详细文档请参阅 [PERFORMANCE.md](PERFORMANCE.md)。
 
 ---
 
