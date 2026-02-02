@@ -408,26 +408,48 @@ tools: [
 newtools.cloud/
 ├── index.html                      # 主页面
 ├── manifest.json                   # PWA 应用配置
-├── sw.js                          # Service Worker（离线缓存）
-├── package.json                   # 项目配置
-├── generate-icons.js              # 图标生成工具
-├── README.md                      # 项目文档
+├── sw.js                           # Service Worker（离线缓存）
+├── logo.svg                        # 项目 Logo
+├── LICENSE                         # MIT 许可证
+├── README.md                       # 项目文档
+│
+├── package.json                    # 前端项目配置
+├── package-lock.json               # npm 锁定文件
+├── generate-icons.js               # 图标生成工具
+│
+├── server.js                       # 服务器端数据存储 API
+├── server-package.json             # 服务器依赖配置
+├── start-server.bat                # Windows 启动脚本
+├── start-server.sh                 # Linux/macOS 启动脚本
 │
 ├── assets/
 │   ├── css/
-│   │   ├── style.css              # 主样式文件
-│   │   └── performance.css        # 性能优化样式
+│   │   ├── style.css               # 主样式文件
+│   │   └── performance.css         # 性能优化样式
+│   │
+│   ├── icons/                      # PWA 应用图标
+│   │   ├── icon-48x48.png
+│   │   ├── icon-72x72.png
+│   │   ├── icon-96x96.png
+│   │   ├── icon-128x128.png
+│   │   ├── icon-144x144.png
+│   │   ├── icon-152x152.png
+│   │   ├── icon-192x192.png
+│   │   ├── icon-384x384.png
+│   │   └── icon-512x512.png
 │   │
 │   └── js/
-│       ├── app.js                 # 应用入口
-│       ├── store.js               # 状态管理（375 行）
-│       ├── renderer.js            # 渲染逻辑（895 行）
-│       ├── events.js              # 事件处理（1801 行）
-│       ├── utils.js               # 工具函数
-│       ├── performance-monitor.js # 性能监控器
-│       ├── animation-optimizer.js # 动画优化器
+│       ├── app.js                  # 应用入口
+│       ├── store.js                # 状态管理
+│       ├── renderer.js             # 渲染逻辑
+│       ├── events.js               # 事件处理
+│       ├── utils.js                # 工具函数
+│       ├── performance-monitor.js  # 性能监控器
+│       ├── animation-optimizer.js  # 动画优化器
 │       └── fontawesome-fallback.js # 图标降级方案
-└── logo.svg                       # 项目 Logo
+│
+└── data/
+    └── mytools-data.json           # 服务器端数据存储
 ```
 
 ### 核心模块说明
