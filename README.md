@@ -490,14 +490,22 @@ npm run generate-icons
 
 ### 构建部署
 
-#### 部署到 GitHub Pages
+本项目支持两种部署方式：**纯静态部署** 和 **服务器模式部署**。
+
+---
+
+#### 方式一：纯静态部署
+
+数据存储在浏览器 localStorage，无需后端服务器。
+
+**部署到 GitHub Pages**
 
 1. 推送代码到 GitHub 仓库
 2. 在仓库设置中启用 GitHub Pages
 3. 选择主分支作为源
 4. 访问 `https://Perimsx.github.io/newtools`
 
-#### 部署到 Vercel
+**部署到 Vercel**
 
 ```bash
 # 安装 Vercel CLI
@@ -507,7 +515,7 @@ npm i -g vercel
 vercel
 ```
 
-#### 部署到 Netlify
+**部署到 Netlify**
 
 ```bash
 # 拖拽部署
@@ -515,6 +523,121 @@ vercel
 npm i -g netlify-cli
 netlify deploy
 ```
+
+**使用 Nginx 静态托管**
+
+```nginx
+server {
+    listen 80;
+    server_name newtools.yourdomain.com;
+    root /var/www/newtools;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+---
+
+#### 方式二：服务器模式部署（推荐）
+
+使用 `server.js` 提供服务器端数据存储 API，支持多设备数据同步。
+
+**1. 上传项目到服务器**
+
+```bash
+# 使用 scp 或 git clone
+scp -r newtools/ user@your-server:/var/www/newtools
+# 或
+git clone https://github.com/Perimsx/newtools.git /var/www/newtools
+```
+
+**2. 安装依赖**
+
+```bash
+cd /var/www/newtools
+npm install
+```
+
+**3. 启动服务器**
+
+```bash
+# Linux/macOS
+./start-server.sh
+
+# Windows
+start-server.bat
+
+# 或直接使用 Node.js
+node server.js
+```
+
+服务器默认运行在 `http://localhost:3002`
+
+**4. 使用 PM2 守护进程（推荐生产环境）**
+
+```bash
+# 安装 PM2
+npm install -g pm2
+
+# 启动并守护进程
+pm2 start server.js --name newtools
+
+# 查看状态
+pm2 status
+
+# 查看日志
+pm2 logs newtools
+
+# 设置开机自启
+pm2 save
+pm2 startup
+```
+
+**5. Nginx 反向代理配置**
+
+```nginx
+server {
+    listen 80;
+    server_name newtools.yourdomain.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3002;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+**6. 配置 HTTPS（推荐）**
+
+```bash
+# 使用 Certbot 自动获取 SSL 证书
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d newtools.yourdomain.com
+```
+
+---
+
+#### 服务器 API 说明
+
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/api/health` | GET | 健康检查 |
+| `/api/auth/login` | POST | 管理员登录 |
+| `/api/auth/logout` | POST | 登出 |
+| `/api/auth/check` | GET | 检查登录状态 |
+| `/api/data` | GET | 读取数据（需登录） |
+| `/api/data` | POST | 保存数据（需登录） |
+| `/api/backup` | POST | 创建备份（需登录） |
+| `/api/backups` | GET | 获取备份列表（需登录） |
 
 ### 代码规范
 
